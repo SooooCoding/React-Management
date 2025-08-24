@@ -30,14 +30,14 @@ class App extends Component {
 constructor(props) {
   super(props);
   this.state = {
-    customer: '',
+    customers: '',
     completed: 0
   }
 }
 
 stateRefresh = () => {
   this.setState({
-    customer: '',
+    customers: '',
     completed: 0
   });
   this.callApi()
@@ -77,13 +77,15 @@ stateRefresh = () => {
                 <TableCell>DOB</TableCell>
                 <TableCell>Gender</TableCell>
                 <TableCell>Job</TableCell>
+                <TableCell>Setting</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {this.state.customers ? this.state.customers.map(c => { return ( <Customer key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} job={c.job} /> ); 
+              {this.state.customers ? this.state.customers.map(c => { 
+                return ( <Customer key={c.id} stateRefresh={this.stateRefresh} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} job={c.job} /> ); 
               }) : 
               <TableRow>
-                <TableCell colSpan="6" align="center">
+                <TableCell colSpan="7" align="center">
                   <CircularProgress className={classes.progress}/>
                 </TableCell>
               </TableRow>}
